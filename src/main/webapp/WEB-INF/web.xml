@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!-- 全栈参数配置 -->
+    <context-param>
+        <description>全站编码</description>
+        <param-name>encode</param-name>
+        <param-value>utf-8</param-value>
+    </context-param>
+    
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error/500.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.jsp</location>
+    </error-page>
+
+    <!-- 监听器配置开始 -->
+    <listener>
+        <listener-class>com.zler.listener.MyHSessionListener</listener-class>
+    </listener>
+    <!-- 监听器配置结束 -->
+
+    <!-- 过滤器配置开始 -->
+    <filter>
+        <description>全站乱码过滤器</description>
+        <filter-name>EncodeFilter</filter-name>
+        <filter-class>com.zler.filter.EncodeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <description>30天自动登陆过滤器</description>
+        <filter-name>AutoLoginFilter</filter-name>
+        <filter-class>com.zler.filter.AutoLoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AutoLoginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- 过滤器配置结束 -->
+
+    <!-- servlet配置开始 -->
+    <servlet>
+        <servlet-name>Valilmg</servlet-name>
+        <servlet-class>com.zler.web.Valilmg</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Valilmg</servlet-name>
+        <url-pattern>/Valilmg</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>com.zler.web.Register</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Active</servlet-name>
+        <servlet-class>com.zler.web.Active</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Active</servlet-name>
+        <url-pattern>/Active</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.zler.web.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>com.zler.web.Logout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Addprod</servlet-name>
+        <servlet-class>com.zler.web.Addprod</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Addprod</servlet-name>
+        <url-pattern>/Addprod</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ProdList</servlet-name>
+        <servlet-class>com.zler.web.ProdList</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProdList</servlet-name>
+        <url-pattern>/ProdList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Img</servlet-name>
+        <servlet-class>com.zler.web.Img</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Img</servlet-name>
+        <url-pattern>/Img</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ProdInfo</servlet-name>
+        <servlet-class>com.zler.web.ProdInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProdInfo</servlet-name>
+        <url-pattern>/ProdInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddCart</servlet-name>
+        <servlet-class>com.zler.web.AddCart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddCart</servlet-name>
+        <url-pattern>/AddCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DelCart</servlet-name>
+        <servlet-class>com.zler.web.DelCart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelCart</servlet-name>
+        <url-pattern>/DelCart</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ChangeCart</servlet-name>
+        <servlet-class>com.zler.web.ChangeCart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeCart</servlet-name>
+        <url-pattern>/ChangeCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClearCart</servlet-name>
+        <servlet-class>com.zler.web.ClearCart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClearCart</servlet-name>
+        <url-pattern>/ClearCart</url-pattern>
+    </servlet-mapping>
+    <!-- servlet配置结束 -->
+    
+    <!-- 主页配置 -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
