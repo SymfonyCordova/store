@@ -168,6 +168,15 @@
         <servlet-name>ClearCart</servlet-name>
         <url-pattern>/ClearCart</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddOrder</servlet-name>
+        <servlet-class>com.zler.web.AddOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddOrder</servlet-name>
+        <url-pattern>/AddOrder</url-pattern>
+    </servlet-mapping>
     <!-- servlet配置结束 -->
     
     <!-- 主页配置 -->

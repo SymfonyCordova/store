@@ -17,7 +17,7 @@
     <h1>我的购物车</h1>
     <a href="/ProdList">继续购物</a>
     <a href="/ClearCart">清空购物车</a>
-    <a href="#"><img src="/img/gotoorder.bmp" /></a>
+    <a href="/addOrder.jsp"><img src="/img/gotoorder.bmp" /></a>
     <c:if test="${empty sessionScope.cartmap}">
         <h2><a href="${pageContext.request.contextPath}">购物车空空如也,请先去挑点东西吧</a></h2>
     </c:if>

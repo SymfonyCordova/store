@@ -19,7 +19,7 @@ public class ProdList extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProdService service = BasicFactory.getFacroty().getInstance(ProdService.class);
+        ProdService service = BasicFactory.getFacroty().getService(ProdService.class);
         try{
             //1.调用Service查询所有商品
             List<Product> list = service.findAllProd();

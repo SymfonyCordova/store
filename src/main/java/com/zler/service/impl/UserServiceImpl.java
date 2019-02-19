@@ -17,23 +17,20 @@ import java.util.Properties;
 import java.util.UUID;
 
 public class UserServiceImpl implements UserService {
-    private UserDao dao = BasicFactory.getFacroty().getInstance(UserDao.class);
+    private UserDao dao = BasicFactory.getFacroty().getDao(UserDao.class);
 
     @Override
     public void register(User user) {
-        Connection connection = null;
         try {
-            connection = JDBCToolkit.getConn();
-            connection.setAutoCommit(false);
             //1.校验用户名是否已经存在
-            if((dao.findUserByName(user.getUsername(), connection)) != null){
+            if((dao.findUserByName(user.getUsername())) != null){
                 throw new RuntimeException("用户名已经存在");
             }
             //2.调用dao中的方法添加用户到数据库
             user.setRole("user");
             user.setState(0);
             user.setActivecode(UUID.randomUUID().toString());
-            dao.addUser(user, connection);
+            dao.addUser(user);
             //3.发送激活邮件
             Properties prop = new Properties();
             prop.setProperty("mail.transport.protocol", "smtp");//协议
@@ -53,10 +50,7 @@ public class UserServiceImpl implements UserService {
             Transport transport = session.getTransport();
             transport.connect("aa", "123");
             transport.sendMessage(message, message.getAllRecipients());
-
-            DbUtils.commitAndCloseQuietly(connection);
         } catch (Exception e) {
-            DbUtils.rollbackAndCloseQuietly(connection);
             e.printStackTrace();
             throw new RuntimeException("邮件发送异常");
         }

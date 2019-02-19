@@ -3,10 +3,12 @@ package com.zler.dao.impl;
 import com.zler.dao.ProdDao;
 import com.zler.domain.Product;
 import com.zler.tool.JDBCToolkit;
+import com.zler.tool.TransactionManager;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ProdDaoImpl implements ProdDao {
@@ -41,6 +43,21 @@ public class ProdDaoImpl implements ProdDao {
         try {
             QueryRunner runner = new QueryRunner(JDBCToolkit.getSource());
             return runner.query(sql, new BeanHandler<>(Product.class), id);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void delPNum(String product_id, int buynum) {
+        String sql = "update products set pnum = pnum-? where id = ? and pnum-? >= 0";
+        try {
+            QueryRunner runner = new QueryRunner();
+            int count = runner.update(TransactionManager.getConn(),sql, buynum, product_id, buynum);
+            if(count<=0){
+                throw new SQLException("库存不足");
+            }
         }catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException(e);

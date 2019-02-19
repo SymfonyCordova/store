@@ -4,7 +4,7 @@ import com.zler.domain.Product;
 
 import java.util.List;
 
-public interface ProdService {
+public interface ProdService extends Service{
     /**
      * 添加商品
      * @param prod 商品信息bean

@@ -18,7 +18,7 @@ public class Img extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProdService service = BasicFactory.getFacroty().getInstance(ProdService.class);
+        ProdService service = BasicFactory.getFacroty().getService(ProdService.class);
         //1.根据查找出商品
         //Product prod = service.findProdById(request.getParameter("id"));
         //2.获取商品的url,输出图片

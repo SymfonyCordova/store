@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebServlet(name = "LoginServlet")
 public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserService service = BasicFactory.getFacroty().getInstance(UserService.class);
+        UserService service = BasicFactory.getFacroty().getService(UserService.class);
         try{
             //1.校验验证码
             String valistr1 = request.getParameter("valistr");

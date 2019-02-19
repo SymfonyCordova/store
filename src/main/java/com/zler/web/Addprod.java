@@ -24,7 +24,7 @@ import java.util.UUID;
 @WebServlet(name = "Addprod")
 public class Addprod extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProdService service = BasicFactory.getFacroty().getInstance(ProdService.class);
+        ProdService service = BasicFactory.getFacroty().getService(ProdService.class);
         try {
             String encode = this.getServletContext().getInitParameter("encode");
             Map<String, String> paramMap= new HashMap<>();

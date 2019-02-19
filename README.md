@@ -154,9 +154,57 @@ javaweb电子商城案例 面向切面编程 利用注解加本地线程方式�
     ProdService 提供根据id查询商品的方法
     ProdDao 提供根据id查询商品的方法
 8.加入购物车
-    在商品的详细信息页面中提供 加入购物车按钮
-    AddCartServlet -- cartMap<Product, buynum>
+    在商品的详细信息页面中提供点击加入购物车,将商品加入购物车
+    设置监听器,在Session创建时,就将cartmap加入到session中
+    AddCartServlet -- 根据id查找商品,存入购物车,如果购物车中还不存在这个商品,则存入,数量为1,如果已经存在,则存入,数量为原有的基础上加1
+    cart.jsp -- 遍历购物车map,遍历cartmap显示当前用户所有的购物出信息
+9.删除购物车
+    在购物车页面,中点击删除时,触发
+    DelCart,根据id找到要删除的商品后,从购物车map中删除
+10.修改购物车数量
+    在购物车页面,修该购物车数量时,利用js控制输入的数字必须正整数
+    ChangeCart,根据id找到要删除的商品后,修改购物车中商品的数量
+11.清空购物车
+    找到购物车map,清空map
+12.生成订单
+    在购物车中,当购物完成后,用户点击生成订单,生成订单
+    访问一个addOrder.jsp 列出订单的基本信息,要求用户输入收货地址和支付方式
+    AddOrder 创建Order对象设置基本值,其中Money需要在后台根据购物车实时计算起来 调用OrderService中生成订单的方法 清空购物车 回到主页
+    OrderService -- 中生成订单的方法 在订单表中插入一条记录 在订单项表中插入记录保存此订单和商品之间的关系 从商品表中的库存数量中扣除购买数量 需要进行事物管理
+    OrderDao -- 增加订单的方法 增加订单项的方法
+    ProductDao -- 增加扣除商品数量的方法
+   
+面向切面编程(AOP)
+
+~注解：
+    注释--给人看的提示信息就叫做注释 // /**/ /** */
+    注解--给程序看的提示信息就叫做注解 @xxxxx(...)
     
+    @Override: 限定重写父类方法,该注解只能用于方法
+    @Deprecated: 用于表示某个程序元素(类, 方法等)已过时
+    @SuppressWarnings: 抑制编译器警告
+    
+    自定义注解
+        @interface 定义一个注解
+        定义出来的注解可以被元注解修饰,确定其基本的特性
+            元注解: 描述注解的注解就叫做元注解
+            @Retention: 只能用于修饰一个Annotation定义,用于指定该Annotation可以保留的域
+            
+            RetentionPolicy.SOURCE: 编译器直接丢弃这种策略的注释
+            RetentionPolicy.CLASS: 编译器将注解记录在class文件中.当运行JAVA程序时,JVM不会保留注解.这是默认值
+            RetentionPolicy.RUNTIME: 编译器将把注释记录在class文件中.当运行JAVA程序时,JVM会保留注解.程序可以通过反射来获取该注解
+        
+            @Target: 指定注解用于修饰类的哪个成员
+            @Documented: 用于指定被该元Annotation修饰的Annotation类将被javadoc工具提取成文档
+            @Inherited: 被其他修饰的Annotation将具有继承性.如果某个类使用了被@Inherited修饰的Annotation,则其子类将自动具有该注解
+        
+        注解中还可以包含属性:
+            属性的定义类似于在接口中定义一个方法
+            String name();
+            String addr() default "xxx"
+            如果注解中只有一个属性并且名字为value,则在定义注解时可以直接写值而省略value=部分
+        
+        反射注解: 通过反射注解,来确定某个方法属性上是否有注解从而控制程序的流转
 ```
 
 # 邮件开发

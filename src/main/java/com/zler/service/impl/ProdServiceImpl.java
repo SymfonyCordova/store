@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class ProdServiceImpl implements ProdService {
-    ProdDao dao = BasicFactory.getFacroty().getInstance(ProdDao.class);
+    ProdDao dao = BasicFactory.getFacroty().getDao(ProdDao.class);
 
     @Override
     public void addProd(Product prod) {
