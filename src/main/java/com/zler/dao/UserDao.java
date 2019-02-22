@@ -46,4 +46,11 @@ public interface UserDao extends Dao {
      * @return 找到的用户bean
      */
     User findUserByNameAndPsw(String username, String password);
+
+    /**
+     * 根据id查找用户
+     * @param user_id
+     * @return
+     */
+    User findUserById(int user_id);
 }

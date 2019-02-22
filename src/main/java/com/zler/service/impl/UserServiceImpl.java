@@ -4,15 +4,12 @@ import com.zler.dao.UserDao;
 import com.zler.domain.User;
 import com.zler.factory.BasicFactory;
 import com.zler.service.UserService;
-import com.zler.tool.JDBCToolkit;
-import org.apache.commons.dbutils.DbUtils;
 
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.sql.Connection;
 import java.util.Properties;
 import java.util.UUID;
 

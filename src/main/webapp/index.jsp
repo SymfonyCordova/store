@@ -15,6 +15,7 @@
       <a href="/addProd.jsp">添加商品</a>
       <a href="/ProdList">商品列表</a>
       <a href="/cart.jsp">购物车</a>
+      <a href="/OrderList">订单查询</a>
       <a href="${pageContext.request.contextPath}/Logout">注销</a>
     </c:if>
   </body>

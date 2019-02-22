@@ -177,6 +177,16 @@
         <servlet-name>AddOrder</servlet-name>
         <url-pattern>/AddOrder</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderList</servlet-name>
+        <servlet-class>com.zler.web.OrderList</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderList</servlet-name>
+        <url-pattern>/OrderList</url-pattern>
+    </servlet-mapping>
+
     <!-- servlet配置结束 -->
     
     <!-- 主页配置 -->

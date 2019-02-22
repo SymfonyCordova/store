@@ -1,5 +1,6 @@
 package com.zler.factory;
 
+import com.zler.annotation.Tran;
 import com.zler.dao.Dao;
 import com.zler.service.Service;
 import com.zler.tool.TransactionManager;
@@ -54,20 +55,25 @@ public class BasicFactory {
                     new InvocationHandler() {
                 @Override
                 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                    try {
-                        TransactionManager.startTran();
-                        Object obj = method.invoke(service, args);
-                        TransactionManager.commit();
-                        return obj;
-                    }catch (InvocationTargetException e) {
-                        TransactionManager.rollback();
-                        throw new RuntimeException(e.getTargetException());
-                    } catch (Exception e) {
-                        TransactionManager.rollback();
-                        throw new RuntimeException(e);
-                    }finally {
-                        TransactionManager.release();
+                    if(method.isAnnotationPresent(Tran.class)){
+                        try {
+                            TransactionManager.startTran();
+                            Object obj = method.invoke(service, args);
+                            TransactionManager.commit();
+                            return obj;
+                        }catch (InvocationTargetException e) {
+                            TransactionManager.rollback();
+                            throw new RuntimeException(e.getTargetException());
+                        } catch (Exception e) {
+                            TransactionManager.rollback();
+                            throw new RuntimeException(e);
+                        }finally {
+                            TransactionManager.release();
+                        }
+                    }else{
+                        return method.invoke(service, args);
                     }
+
                 }
             });
 
