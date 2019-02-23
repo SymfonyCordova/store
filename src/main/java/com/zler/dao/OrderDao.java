@@ -2,6 +2,7 @@ package com.zler.dao;
 
 import com.zler.domain.Order;
 import com.zler.domain.OrderItem;
+import com.zler.domain.SaleInfo;
 
 import java.util.List;
 
@@ -31,4 +32,36 @@ public interface OrderDao extends Dao {
      * @return
      */
     List<OrderItem> findOrderItems(String id);
+
+    /**
+     * 删除指定id订单所关联的所有订单项
+     * @param orderId 订单id
+     */
+    void delOrderItem(String orderId);
+
+    /**
+     * 删除指定id的订单
+     * @param id
+     */
+    void delOrder(String id);
+
+    /**
+     * 根据id查询订单
+     * @param id
+     * @return
+     */
+    Order findOrderById(String id);
+
+    /**
+     * 修改订单支付状态
+     * @param id
+     * @param i
+     */
+    void changePayState(String id, int i);
+
+    /**
+     * 查询销售榜单
+     * @return
+     */
+    List<SaleInfo> saleList();
 }

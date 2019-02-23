@@ -70,4 +70,33 @@ public class OrderServiceImpl implements OrderService {
 
         }
     }
+
+    @Override
+    public void delOrderById(String id) {
+        //1.根据id查询出所有订单项
+        List<OrderItem> list = orderDao.findOrderItems(id);
+        //2.遍历订单项,将对应prod_id的商品的库存加回去
+        for(OrderItem item : list){
+            prodDao.addPnum(item.getProduct_id(), item.getBuynum());
+        }
+        //3.删除订单项
+        orderDao.delOrderItem(id);
+        //4.删除订单
+        orderDao.delOrder(id);
+    }
+
+    @Override
+    public Order findOrderById(String id) {
+        return orderDao.findOrderById(id);
+    }
+
+    @Override
+    public void changePayState(String id, int i) {
+        orderDao.changePayState(id, i);
+    }
+
+    @Override
+    public List<SaleInfo> saleList() {
+        return orderDao.saleList();
+    }
 }

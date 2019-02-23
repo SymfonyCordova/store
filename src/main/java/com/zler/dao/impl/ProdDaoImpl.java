@@ -62,4 +62,16 @@ public class ProdDaoImpl implements ProdDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void addPnum(String product_id, int buynum) {
+        String sql = "update products set pnum = pnum+? where id = ?";
+        try {
+            QueryRunner runner = new QueryRunner(TransactionManager.getSource());
+            runner.update(sql, buynum, product_id);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 }

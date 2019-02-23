@@ -30,4 +30,11 @@ public interface ProdDao extends Dao{
      * @param buynum
      */
     void delPNum(String product_id, int buynum);
+
+    /**
+     * 加回产品库存数量
+     * @param product_id
+     * @param buynum
+     */
+    void addPnum(String product_id, int buynum);
 }

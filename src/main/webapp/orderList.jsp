@@ -12,6 +12,8 @@
         支付状态: 
             <c:if test="${olf.paystate==0}">
                 <font color="red">未支付</font>
+                <a href="${pageContext.request.contextPath}/DelOrder?id=${olf.id}">订单删除</a>
+                <a href="${pageContext.request.contextPath}/pay.jsp?id=${olf.id}&money=${olf.money}">在线支付</a>
             </c:if>
             <c:if test="${olf.paystate!=0}">
                 <font color="blue">已支付</font>
